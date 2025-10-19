@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aram Shin — Construction & Earthworks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-orange': '#F68D2E',
+            'brand-dark': '#1E1E1E',
+            'brand-mid': '#2B2B2B',
+            'brand-light': '#F5F5F5'
+          },
+          fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] },
+          boxShadow: { soft: '0 10px 30px rgba(0,0,0,.08)' },
+          keyframes: {
+            float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-6px)' } },
+            fadeInUp: { '0%': { opacity: 0, transform: 'translateY(16px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+            marquee: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } }
+          },
+          animation: {
+            float: 'float 4s ease-in-out infinite',
+            fadeInUp: 'fadeInUp .7s ease forwards',
+            marquee: 'marquee 30s linear infinite'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html{scroll-behavior:smooth}
+    .header-blur{backdrop-filter:saturate(160%) blur(10px)}
+    .reveal{opacity:0;transform:translateY(16px)}
+    .reveal.shown{opacity:1;transform:translateY(0);transition:all .7s ease}
+    .carousel-track{display:flex;gap:1rem;transition:transform .5s ease}
+    .carousel-item{min-width:85%}
+    @media(min-width:768px){.carousel-item{min-width:48%}}
+    @media(min-width:1024px){.carousel-item{min-width:32%}}
+  </style>
+</head>
+<body class="bg-brand-light text-brand-dark font-sans antialiased">
+  <!-- NAVBAR -->
+  <header id="site-header" class="fixed inset-x-0 top-0 z-50 header-blur bg-white/70 border-b border-black/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="h-16 flex items-center justify-between">
+        <a href="#hero" class="flex items-center gap-3">
+          <img src="logo_x.png" alt="Aram Shin" class="h-8 w-auto" onerror="this.onerror=null;this.src='https://placehold.co/160x38/F68D2E/FFFFFF?text=ARAM+SHIN'"/>
+        </a>
+        <nav class="hidden md:flex items-center gap-6">
+          <a data-localize="nav_services" href="#services" class="hover:text-brand-orange transition"></a>
+          <a data-localize="nav_truck" href="#equipment" class="hover:text-brand-orange transition"></a>
+          <a data-localize="nav_about" href="#about" class="hover:text-brand-orange transition"></a>
+          <a data-localize="nav_partners" href="#partners" class="hover:text-brand-orange transition"></a>
+          <a data-localize="nav_contact" href="#contact" class="inline-flex items-center gap-2 rounded-full bg-brand-orange text-white px-4 py-2 font-semibold shadow-soft hover:bg-orange-500 transition"></a>
+          <div class="relative" id="lang-box">
+            <button id="lang-toggle-button" class="inline-flex items-center gap-1 px-3 py-2 rounded-md border border-gray-200 bg-white hover:bg-gray-50">
+              <span id="current-lang-name">Հայերեն</span>
+              <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </button>
+            <div id="lang-dropdown" class="hidden absolute right-0 mt-2 w-44 bg-white shadow-soft rounded-md border border-gray-100 overflow-hidden">
+              <a href="#" data-lang="AM" class="lang-link block px-3 py-2 hover:bg-brand-light">Հայերեն</a>
+              <a href="#" data-lang="RU" class="lang-link block px-3 py-2 hover:bg-brand-light">Русский</a>
+              <a href="#" data-lang="EN" class="lang-link block px-3 py-2 hover:bg-brand-light">English</a>
+            </div>
+          </div>
+        </nav>
+        <div class="md:hidden flex items-center gap-2">
+          <a href="tel:+37444201420" class="p-2 rounded-full hover:bg-brand-light"><i data-lucide="phone" class="w-6 h-6"></i></a>
+          <button id="mobile-menu-button" class="p-2 rounded-md hover:bg-brand-light"><i data-lucide="menu" class="w-6 h-6"></i></button>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-black/5 bg-white">
+      <div class="px-4 py-3 space-y-1">
+        <a data-localize="nav_services" href="#services" class="block py-2"></a>
+        <a data-localize="nav_truck" href="#equipment" class="block py-2"></a>
+        <a data-localize="nav_about" href="#about" class="block py-2"></a>
+        <a data-localize="nav_partners" href="#partners" class="block py-2"></a>
+        <a data-localize="nav_contact" href="#contact" class="block py-2 font-semibold text-brand-orange"></a>
+        <div class="pt-2 border-t border-gray-100">
+          <p class="text-xs uppercase tracking-wide text-gray-500">Language</p>
+          <div class="flex gap-2 pt-2">
+            <a href="#" data-lang="AM" class="lang-link px-3 py-1 rounded-full bg-brand-light">AM</a>
+            <a href="#" data-lang="RU" class="lang-link px-3 py-1 rounded-full bg-brand-light">RU</a>
+            <a href="#" data-lang="EN" class="lang-link px-3 py-1 rounded-full bg-brand-light">EN</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero" class="relative min-h-[85svh] grid place-items-center overflow-hidden">
+    <img id="hero-bg" src="worker.jpg" alt="Construction background" class="absolute inset-0 w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/1F1F1F/F68D2E?text=Construction'"/>
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-brand-dark/80"></div>
+    <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+      <h1 data-localize="hero_title" class="text-white text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight reveal"></h1>
+      <p data-localize="hero_subtitle" class="mt-4 text-white/80 text-lg sm:text-xl max-w-2xl mx-auto reveal"></p>
+      <div class="mt-8 flex items-center justify-center gap-3">
+        <a data-localize="hero_button" href="#contact" class="inline-flex items-center gap-2 rounded-full bg-brand-orange text-brand-dark font-bold px-6 py-3 shadow-soft hover:scale-105 transition transform"></a>
+        <a href="tel:+37444201420" class="inline-flex items-center gap-2 rounded-full bg-white/10 text-white px-6 py-3 border border-white/20 hover:bg-white/20 transition">
+          <i data-lucide="phone" class="w-5 h-5"></i>
+          <span>+374 44 20 14 20</span>
+        </a>
+      </div>
+      <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-4 text-white border border-white/10 reveal">
+          <p class="text-3xl font-extrabold" data-count="250">0</p>
+          <p class="text-sm opacity-80" data-localize="stats_projects_label"></p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-4 text-white border border-white/10 reveal">
+          <p class="text-3xl font-extrabold" data-count="40">0</p>
+          <p class="text-sm opacity-80" data-localize="stats_machines_label"></p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-4 text-white border border-white/10 reveal">
+          <p class="text-3xl font-extrabold" data-count="12">0</p>
+          <p class="text-sm opacity-80" data-localize="stats_years_label"></p>
+        </div>
+        <div class="bg-white/10 backdrop-blur rounded-2xl p-4 text-white border border-white/10 reveal">
+          <p class="text-3xl font-extrabold" data-count="100">0</p>
+          <p class="text-sm opacity-80" data-localize="stats_partners_label"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 data-localize="section_services_title" class="text-3xl md:text-4xl font-extrabold text-center reveal"></h2>
+      <p data-localize="service_intro" class="text-center text-gray-600 mt-2 max-w-3xl mx-auto reveal"></p>
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <article class="group bg-brand-light/50 rounded-2xl p-5 shadow-soft hover:shadow-lg transition transform hover:-translate-y-1 reveal">
+          <img src="earthworks.jpg" class="h-44 w-full object-cover rounded-xl" alt="Earthworks"/>
+          <div class="mt-4">
+            <h3 data-localize="service1_title" class="text-xl font-semibold"></h3>
+            <p data-localize="service1_desc" class="text-gray-600 mt-1"></p>
+            <div class="mt-4 flex items-center gap-2 text-brand-orange">
+              <i data-lucide="check-circle" class="w-5 h-5"></i>
+              <span data-localize="service1_list"></span>
+            </div>
+          </div>
+        </article>
+        <article class="group bg-brand-light/50 rounded-2xl p-5 shadow-soft hover:shadow-lg transition transform hover:-translate-y-1 reveal">
+          <img src="transporting.jpg" class="h-44 w-full object-cover rounded-xl" alt="Transport"/>
+          <div class="mt-4">
+            <h3 data-localize="service2_title" class="text-xl font-semibold"></h3>
+            <p data-localize="service2_desc" class="text-gray-600 mt-1"></p>
+            <div class="mt-4 flex items-center gap-2 text-brand-orange">
+              <i data-lucide="truck" class="w-5 h-5"></i>
+              <span data-localize="service2_list"></span>
+            </div>
+          </div>
+        </article>
+        <article class="group bg-brand-light/50 rounded-2xl p-5 shadow-soft hover:shadow-lg transition transform hover:-translate-y-1 reveal">
+          <img src="demolition.jpg" class="h-44 w-full object-cover rounded-xl" alt="Demolition"/>
+          <div class="mt-4">
+            <h3 data-localize="service3_title" class="text-xl font-semibold"></h3>
+            <p data-localize="service3_desc" class="text-gray-600 mt-1"></p>
+            <div class="mt-4 flex items-center gap-2 text-brand-orange">
+              <i data-lucide="zap" class="w-5 h-5"></i>
+              <span data-localize="service3_list"></span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- EQUIPMENT / CAROUSEL -->
+  <section id="equipment" class="py-20 bg-brand-light">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 data-localize="section_truck_title" class="text-3xl md:text-4xl font-extrabold text-center reveal"></h2>
+      <p data-localize="truck_desc" class="text-center text-gray-700 mt-2 max-w-4xl mx-auto reveal"></p>
+      <div class="mt-10 relative">
+        <div class="overflow-hidden" id="eq-viewport">
+          <div class="carousel-track" id="eq-track">
+            <div class="carousel-item bg-white rounded-2xl shadow-soft p-4 reveal">
+              <img src="concrete.PNG" alt="Concrete pump" class="h-56 w-full object-cover rounded-xl" />
+              <ul class="mt-4 space-y-2 text-gray-700">
+                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-brand-orange"></i><span data-localize="truck_feature1"></span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-brand-orange"></i><span data-localize="truck_feature2"></span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-brand-orange"></i><span data-localize="truck_feature3"></span></li>
+                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-5 h-5 text-brand-orange"></i><span data-localize="truck_feature4"></span></li>
+              </ul>
+            </div>
+            <div class="carousel-item bg-white rounded-2xl shadow-soft p-4 reveal">
+              <img src="earthworks.jpg" alt="Excavator" class="h-56 w-full object-cover rounded-xl" />
+              <p class="mt-4 text-gray-700" data-localize="carousel_desc1"></p>
+            </div>
+            <div class="carousel-item bg-white rounded-2xl shadow-soft p-4 reveal">
+              <img src="transporting.jpg" alt="Haulage" class="h-56 w-full object-cover rounded-xl" />
+              <p class="mt-4 text-gray-700" data-localize="carousel_desc2"></p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-4 flex items-center justify-between">
+          <button id="eq-prev" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border hover:bg-white"><i data-lucide="chevron-left" class="w-5 h-5"></i><span data-localize="eq_prev"></span></button>
+          <button id="eq-next" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border hover:bg-white"><span data-localize="eq_next"></span><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT + FAQ -->
+  <section id="about" class="py-20 bg-brand-dark text-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 data-localize="section_about_title" class="text-3xl md:text-4xl font-extrabold text-center reveal"></h2>
+      <p data-localize="about_content" class="mt-6 text-white/80 leading-relaxed reveal"></p>
+      <div class="mt-10 grid md:grid-cols-2 gap-6">
+        <details class="bg-white/5 rounded-xl p-5 border border-white/10 reveal" open>
+          <summary class="cursor-pointer font-semibold" data-localize="faq_q1"></summary>
+          <p class="mt-3 text-white/80" data-localize="faq_a1"></p>
+        </details>
+        <details class="bg-white/5 rounded-xl p-5 border border-white/10 reveal">
+          <summary class="cursor-pointer font-semibold" data-localize="faq_q2"></summary>
+          <p class="mt-3 text-white/80" data-localize="faq_a2"></p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section id="partners" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 data-localize="section_partners_title" class="text-3xl md:text-4xl font-extrabold text-center reveal"></h2>
+      <p data-localize="partner_desc" class="text-center text-gray-600 mt-2 max-w-3xl mx-auto reveal"></p>
+    </div>
+    <div class="mt-8 relative overflow-hidden bg-brand-light py-4 border-y border-gray-100">
+      <div class="whitespace-nowrap flex animate-marquee" onmouseover="this.style.animationPlayState='paused'" onmouseout="this.style.animationPlayState='running'">
+        <img src="kanal_logo.svg" class="h-10 opacity-70 mx-10" alt="Kanal"/>
+        <img src="yerevan_logo.svg" class="h-10 opacity-70 mx-10" alt="Yerevan"/>
+        <img src="kanal_logo.svg" class="h-10 opacity-70 mx-10" alt="Kanal"/>
+        <img src="yerevan_logo.svg" class="h-10 opacity-70 mx-10" alt="Yerevan"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-20 bg-brand-light">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 data-localize="section_contact_title" class="text-3xl md:text-4xl font-extrabold text-center reveal"></h2>
+      <p data-localize="contact_prompt" class="text-center text-gray-600 mt-2 max-w-3xl mx-auto reveal"></p>
+      <div class="mt-10 grid md:grid-cols-2 gap-8 items-start">
+        <form id="contact-form" class="bg-white rounded-2xl shadow-soft p-6 reveal">
+          <label class="block text-sm font-medium mb-1" for="name" data-localize="contact_label_name"></label>
+          <input id="name" type="text" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange" placeholder="" data-localize="contact_placeholder_name"/>
+          <label class="block text-sm font-medium mt-4 mb-1" for="email" data-localize="contact_label_email"></label>
+          <input id="email" type="email" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange" placeholder="" data-localize="contact_placeholder_email"/>
+          <label class="block text-sm font-medium mt-4 mb-1" for="message" data-localize="contact_label_message"></label>
+          <textarea id="message" rows="5" class="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange" placeholder="" data-localize="contact_placeholder_message"></textarea>
+          <button type="submit" class="mt-5 w-full rounded-lg bg-brand-orange text-white font-semibold py-3 hover:opacity-90" data-localize="contact_submit"></button>
+          <p id="form-status" class="mt-3 text-sm"></p>
+        </form>
+        <div class="bg-brand-dark text-white rounded-2xl shadow-soft p-6 reveal">
+          <div class="space-y-5">
+            <div class="flex items-start gap-3">
+              <i data-lucide="phone" class="w-6 h-6 text-brand-orange"></i>
+              <div>
+                <p data-localize="contact_phone" class="text-sm opacity-80 uppercase tracking-wide"></p>
+                <p class="text-lg font-semibold">+374 44 20 14 20</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <i data-lucide="mail" class="w-6 h-6 text-brand-orange"></i>
+              <div>
+                <p data-localize="contact_email" class="text-sm opacity-80 uppercase tracking-wide"></p>
+                <p class="text-lg font-semibold">aramshinllc@gmail.com</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <i data-lucide="map-pin" class="w-6 h-6 text-brand-orange"></i>
+              <div>
+                <p data-localize="contact_address" class="text-sm opacity-80 uppercase tracking-wide"></p>
+                <p class="text-lg font-semibold">Yerevan, Armenia</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-6 h-44 rounded-xl overflow-hidden ring-1 ring-white/10">
+            <iframe width="100%" height="100%" style="border:0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3924.891822415872!2d44.458538008127846!3d40.18163001042561!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sam!4v1760828102537"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-brand-mid text-gray-300">
+    <div class="max-w-7xl mx-auto px-6 py-10">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-sm">© <span id="current-year"></span> Aram Shin. <span data-localize="footer_rights"></span></p>
+        <div class="flex items-center gap-4">
+          <a href="https://www.facebook.com/aramshinarmenia/" target="_blank" class="hover:text-brand-orange"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+          <a href="https://www.instagram.com/aramshinarmenia/" target="_blank" class="hover:text-brand-orange"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+          <a href="tel:+37444201420" class="hover:text-brand-orange"><i data-lucide="phone" class="w-5 h-5"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a id="backTop" href="#hero" class="fixed bottom-5 right-5 hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-brand-orange text-brand-dark shadow-soft hover:scale-105 transition">
+    <i data-lucide="arrow-up" class="w-5 h-5"></i>
+  </a>
+  <a href="tel:+37444201420" class="md:hidden fixed bottom-5 right-5 inline-flex items-center gap-2 rounded-full bg-brand-orange text-brand-dark font-bold px-4 py-3 shadow-soft" data-localize="call_label"></a>
+
+  <!-- TRANSLATIONS & JS -->
+  <script>
+    const translations = {
+      AM:{
+        lang_code:'AM',lang_name:'Հայերեն',
+        nav_services:'Մեր Ծառայությունները',nav_truck:'Մեր Տեխնիկան',nav_about:'Մեր Մասին',nav_partners:'Մեր Գործընկերները',nav_contact:'Կապ Մեզ Հետ',
+        hero_title:'Ձեր Հուսալի Շինարարական Գործընկերը',hero_subtitle:'Որակ, Վստահություն և Արդյունավետություն — ամեն նախագծում',hero_button:'Ստանալ գնանշում',
+        section_services_title:'Մեր Ծառայությունները',
+        service_intro:'Հողային աշխատանքներից մինչև տեղափոխում և քանդում — կատարում ենք ամբողջական շինարարական աշխատանքներ՝ ժամանակակից տեխնիկայով և փորձառու օպերատորներով։',
+        service1_title:'Հողային Աշխատանքներ',service1_desc:'Հողի փորում, տեղափոխում և տարածքի հարթեցում։',service1_list:'Էքսկավատորներ • Գրեյդերներ • Bobcat-ներ',
+        service2_title:'Բեռնափոխադրումներ',service2_desc:'Շինարարական նյութերի, ավազի, մանրախիճի և այլ բեռների տեղափոխում։',service2_list:'Բեռնատարներ • Ցածրակառույց թրեյլերներ',
+        service3_title:'Քանդման Աշխատանքներ',service3_desc:'Հին շինությունների մասնագիտական քանդում։',service3_list:'Հիդրավլիկ մուրճեր • Անվտանգությունը՝ նախընթաց',
+        section_truck_title:'Մեր Տեխնիկան և Մեքենաները',truck_desc:'Օգտագործում ենք ժամանակակից և հզոր հատուկ տեխնիկա՝ Bobcat-ներ, բեռնատարներ, թրեյլերներ, բետոնպոմպեր և այլն։',
+        truck_feature1:'Bobcat, Volvo, բետոնի պոմպեր, թրեյլերներ, խառնիչներ',
+        truck_feature2:'Ծանրաբեռն բեռնատարներ և թրեյլերներ',
+        truck_feature3:'Բետոնի մղման պոմպեր և մասնագիտացված սարքավորում',
+        truck_feature4:'Պարբերական տեխնիկական սպասարկում և անվտանգության ստուգումներ',
+        carousel_desc1:'Էքսկավատորներ, բեռնիչներ, գրեյդերներ՝ բարդ տեղանքի համար։',
+        carousel_desc2:'Ծանրաբեռն բեռնատարներ և թրեյլերներ՝ նյութերի անվտանգ փոխադրության համար։',
+        eq_prev:'Նախորդ', eq_next:'Հաջորդ',
+        section_about_title:'Մեր Մասին',
+        about_content:'«Արամ Շին»-ը տարիներ շարունակ մասնագիտացած է շինարարական և հողային աշխատանքներում՝ ապահովելով բարձր որակ և հուսալիություն։',
+        faq_q1:'Որ տարածքներում եք աշխատում՞',
+        faq_a1:'Աշխատում ենք Երևանում և ամբողջ Հայաստանում։ Մեծ նախագծերի համար հնարավոր է կազմակերպում ամբողջ երկրի մասշտաբով։',
+        faq_q2:'Անվտանգություն և Ապահովագրություն',
+        faq_a2:'Պահպանում ենք խիստ անվտանգության կանոններ և ըստ խնդրանքի տրամադրում ենք ապահովագրական փաստաթղթեր։',
+        section_partners_title:'Մեր Գործընկերները',partner_desc:'Համագործակցում ենք ոլորտի առաջատար ընկերությունների հետ։',
+        section_contact_title:'Կապ Մեզ Հետ',contact_prompt:'Զանգահարեք կամ լրացրեք ձևը՝ անվճար գնանշման համար։',
+        contact_label_name:'Անուն',contact_label_email:'Էլ. փոստ',contact_label_message:'Հաղորդագրություն',
+        contact_placeholder_name:'Ձեր անունը',contact_placeholder_email:'Ձեր էլ. հասցեն',contact_placeholder_message:'Ձեր հաղորդագրությունը կամ նախագծի մանրամասները',
+        contact_submit:'Ուղարկել',
+        contact_phone:'Հեռախոս',contact_email:'Էլ. հասցե',contact_address:'Գլխավոր գրասենյակ',
+        footer_rights:'Բոլոր իրավունքները պաշտպանված են։',
+        stats_projects_label:'+ Նախագիծ',stats_machines_label:'Մեքենաներ',stats_years_label:'Տարիներ',stats_partners_label:'+ Գործընկեր',
+        call_label:'Զանգահարել'
+      },
+      RU:{
+        lang_code:'RU',lang_name:'Русский',
+        nav_services:'Наши Услуги',nav_truck:'Наша Техника',nav_about:'О Нас',nav_partners:'Наши Партнёры',nav_contact:'Связаться',
+        hero_title:'Ваш Надёжный Строительный Партнёр',hero_subtitle:'Качество, надёжность и эффективность — в каждом проекте',hero_button:'Получить смету',
+        section_services_title:'Наши Услуги',
+        service_intro:'От земляных работ до перевозки и демонтажа — берём на себя полный цикл работ с современной техникой и опытными операторами.',
+        service1_title:'Земляные работы',service1_desc:'Рытьё, перемещение грунта и планировка.',service1_list:'Экскаваторы • Грейдеры • Бобкэты',
+        service2_title:'Перевозка материалов',service2_desc:'Транспортировка стройматериалов, песка, щебня и др.',service2_list:'Самосвалы • Низкорамные тралы',
+        service3_title:'Демонтаж',service3_desc:'Профессиональный снос зданий и сооружений.',service3_list:'Гидромолоты • Безопасность прежде всего',
+        section_truck_title:'Наша Техника и Машины',truck_desc:'Современный парк: Bobcat, грузовики, тралы, бетононасосы и др.',
+        truck_feature1:'Bobcat, Volvo, бетононасосы, прицепы, миксеры',
+        truck_feature2:'Тяжёлые грузовики и прицепы',
+        truck_feature3:'Бетононасосы и спецоборудование',
+        truck_feature4:'Регулярное ТО и проверки безопасности',
+        carousel_desc1:'Экскаваторы, погрузчики, грейдеры для сложного рельефа.',
+        carousel_desc2:'Тяжёлые грузовики и прицепы для безопасной перевозки материалов.',
+        eq_prev:'Назад', eq_next:'Далее',
+        section_about_title:'О Нас',
+        about_content:'«Арам Шин» много лет специализируется на строительстве и земляных работах, гарантируя качество и надёжность.',
+        faq_q1:'В каких регионах вы работаете?',
+        faq_a1:'Работаем по Еревану и всей Армении. Крупные проекты организуем по всей стране.',
+        faq_q2:'Безопасность и страховка',
+        faq_a2:'Соблюдаем строгие протоколы безопасности и по запросу предоставляем страховые документы.',
+        section_partners_title:'Наши Партнёры',partner_desc:'Сотрудничаем с ведущими компаниями отрасли.',
+        section_contact_title:'Связаться с нами',contact_prompt:'Позвоните или оставьте заявку, чтобы получить бесплатную смету.',
+        contact_label_name:'Имя',contact_label_email:'Эл. почта',contact_label_message:'Сообщение',
+        contact_placeholder_name:'Ваше имя',contact_placeholder_email:'Ваш e‑mail',contact_placeholder_message:'Сообщение или детали проекта',
+        contact_submit:'Отправить',
+        contact_phone:'Телефон',contact_email:'Эл. почта',contact_address:'Главный офис',
+        footer_rights:'Все права защищены.',
+        stats_projects_label:'+ Проектов',stats_machines_label:'Единиц техники',stats_years_label:'Лет',stats_partners_label:'+ Партнёров',
+        call_label:'Позвонить'
+      },
+      EN:{
+        lang_code:'EN',lang_name:'English',
+        nav_services:'Our Services',nav_truck:'Our Machines',nav_about:'About Us',nav_partners:'Our Partners',nav_contact:'Contact Us',
+        hero_title:'Your Reliable Construction Partner',hero_subtitle:'Quality, reliability & efficiency in every project',hero_button:'Get a Quote',
+        section_services_title:'Our Services',
+        service_intro:'From earthworks to transport and demolition—we cover end‑to‑end construction tasks with modern equipment and expert operators.',
+        service1_title:'Excavation & Earthworks',service1_desc:'Ground digging, soil transfer, site leveling.',service1_list:'Excavators • Graders • Bobcats',
+        service2_title:'Material Transport',service2_desc:'Transportation of materials, sand, gravel and more.',service2_list:'Dump trucks • Low loaders',
+        service3_title:'Demolition Services',service3_desc:'Professional demolition of buildings and structures.',service3_list:'Hydraulic breakers • Safety first',
+        section_truck_title:'Our Truck & Machinery',truck_desc:'We operate modern equipment: Bobcats, trucks, trailers, concrete pumps and more.',
+        truck_feature1:'Bobcats, Volvo, concrete pumps, trailers, mixers',
+        truck_feature2:'Heavy-duty transport trucks & trailers',
+        truck_feature3:'Concrete pumps & specialized equipment',
+        truck_feature4:'Regular maintenance & safety checks',
+        carousel_desc1:'Excavators, loaders, graders for complex terrain.',
+        carousel_desc2:'Heavy-duty trucks & trailers for safe material transport.',
+        eq_prev:'Prev', eq_next:'Next',
+        section_about_title:'About Us',
+        about_content:'“Aram Shin” has specialized in construction and earthworks for many years, delivering quality and reliability.',
+        faq_q1:'What areas do you serve?',
+        faq_a1:'We operate across Yerevan and throughout Armenia. Large projects can be arranged nationwide.',
+        faq_q2:'Safety & Insurance',
+        faq_a2:'We follow strict safety protocols and can provide insurance documentation upon request.',
+        section_partners_title:'Our Partners',partner_desc:'We cooperate with leading companies in the field.',
+        section_contact_title:'Contact Us',contact_prompt:'Call or fill out the form to get a free quote.',
+        contact_label_name:'Name',contact_label_email:'Email',contact_label_message:'Message',
+        contact_placeholder_name:'Your Name',contact_placeholder_email:'Your Email Address',contact_placeholder_message:'Your Message or Project Details',
+        contact_submit:'Send',
+        contact_phone:'Phone',contact_email:'Email',contact_address:'Head Office',
+        footer_rights:'All rights reserved.',
+        stats_projects_label:'+ Projects',stats_machines_label:'Machines',stats_years_label:'Years',stats_partners_label:'+ Partners',
+        call_label:'Call'
+      }
+    };
+
+    const defaultLang = localStorage.getItem('userLang') || 'AM';
+    let currentLang = defaultLang;
+
+    function updateContent(){
+      const t = translations[currentLang];
+      document.querySelectorAll('[data-localize]').forEach(el => {
+        const key = el.getAttribute('data-localize');
+        if(!key) return;
+        if(['INPUT','TEXTAREA'].includes(el.tagName)){
+          if(t[key]) el.placeholder = t[key];
+        } else {
+          if(t[key]) el.textContent = t[key];
+        }
+      });
+      const langName = document.getElementById('current-lang-name');
+      if(langName) langName.textContent = t.lang_name;
+      document.documentElement.lang = t.lang_code.toLowerCase();
+    }
+
+    function setLang(code){ if(translations[code]){ currentLang = code; localStorage.setItem('userLang', code); updateContent(); document.getElementById('lang-dropdown').classList.add('hidden'); } }
+
+    const io = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('shown'); io.unobserve(e.target);} }) },{ threshold: .16 });
+    function revealAll(){ document.querySelectorAll('.reveal').forEach(el=> io.observe(el)); }
+
+    function parallax(){ const img = document.getElementById('hero-bg'); if(!img) return; const y = window.scrollY * 0.25; img.style.transform = `translateY(${y}px) scale(1.05)`; }
+
+    function animateCounters(){
+      document.querySelectorAll('[data-count]').forEach(el=>{
+        const target = +el.dataset.count; let num = 0; const step = Math.max(1, Math.round(target/60));
+        const tick = () => { num += step; if(num>=target){ el.textContent = target; } else { el.textContent = num; requestAnimationFrame(tick); } };
+        requestAnimationFrame(tick);
+      });
+    }
+
+    function toggleMobile(){ document.getElementById('mobile-menu').classList.toggle('hidden'); }
+    function toggleLang(){ document.getElementById('lang-dropdown').classList.toggle('hidden'); }
+
+    function toggleBackTop(){ const b = document.getElementById('backTop'); if(window.scrollY>400){ b.classList.remove('hidden'); } else { b.classList.add('hidden'); } }
+
+    function setupCarousel(){
+      const track = document.getElementById('eq-track');
+      const prev = document.getElementById('eq-prev');
+      const next = document.getElementById('eq-next');
+      if(!track) return; let index = 0;
+      const move = () => { const width = document.getElementById('eq-viewport').clientWidth; track.style.transform = `translateX(-${index * (width*0.84 + 16)}px)`; };
+      if(next) next.addEventListener('click', ()=>{ index = Math.min(index+1, track.children.length-1); move(); });
+      if(prev) prev.addEventListener('click', ()=>{ index = Math.max(index-1, 0); move(); });
+      window.addEventListener('resize', move);
+    }
+
+    function setupForm(){
+      const f = document.getElementById('contact-form'); if(!f) return; const status = document.getElementById('form-status');
+      f.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const msg = document.getElementById('message').value.trim();
+        if(!name || !email || !msg){ status.textContent = currentLang==='RU'?'Заполните все поля.': currentLang==='AM'?'Խնդրում ենք լրացնել բոլոր դաշտերը։':'Please fill all fields.'; status.className='mt-3 text-sm text-red-600'; return; }
+        status.textContent = currentLang==='RU'?'Спасибо! Мы с вами свяжемся.': currentLang==='AM'?'Շնորհակալություն․ կկապվենք ձեզ հետ։':'Thanks! We will contact you shortly.'; status.className='mt-3 text-sm text-green-600';
+        f.reset();
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', ()=>{
+      lucide.createIcons();
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+      const mb = document.getElementById('mobile-menu-button'); if(mb) mb.addEventListener('click', toggleMobile);
+      const lb = document.getElementById('lang-toggle-button'); if(lb) lb.addEventListener('click', toggleLang);
+      document.querySelectorAll('.lang-link').forEach(a=> a.addEventListener('click', (e)=>{ e.preventDefault(); setLang(e.target.getAttribute('data-lang')); }));
+      updateContent();
+      document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+      setupCarousel();
+      setupForm();
+      animateCounters();
+      toggleBackTop();
+      parallax();
+    });
+    window.addEventListener('scroll', ()=>{ toggleBackTop(); parallax(); });
+  </script>
+</body>
+</html>
